@@ -10,20 +10,20 @@ vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int s)
     vector<int> dist(adj.size(), maximum);
     vector<int> prev(adj.size(), -1);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> fila;
-    fila.push(make_pair(s, 0));
+    fila.push(make_pair(0, s));
     dist[s] = 0;
     while (!fila.empty())
     {
-        int v = fila.top().first;
+        int v = fila.top().second;
         fila.pop();
         for (int i = 0; i < adj[v].size(); i++)
         {
-            int p = adj[v][i].second;
             int u = adj[v][i].first;
+            int p = adj[v][i].second;
             if (dist[u] > dist[v] + p)
             {
                 dist[u] = dist[v] + p;
-                fila.push(make_pair(u, dist[u]));
+                fila.push(make_pair(dist[u], u));
             }
         }
     }
@@ -50,6 +50,10 @@ int main()
     dist = dijkstra(adj, 1);
     for (int i = 1; i < n; i++)
     {
+        if (dist[i] == maximum)
+        {
+            dist[i] = -1;
+        }
         cout << i << ":" << dist[i] << " ";
     }
     cout << endl;
