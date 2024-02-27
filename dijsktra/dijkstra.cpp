@@ -46,8 +46,7 @@ int main()
         adj[v2].push_back(make_pair(v1, p));
     }
     cin >> s;
-    vector<int> dist(n);
-    dist = dijkstra(adj, 1);
+    vector<int> dist = dijkstra(adj, 1);
     for (int i = 1; i < n; i++)
     {
         if (dist[i] == maximum)
