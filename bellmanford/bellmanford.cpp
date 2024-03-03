@@ -2,28 +2,11 @@
 #define maximum INT_MAX
 using namespace std;
 
-vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int s)
+vector<int> bellman(vector<vector<pair<int, int>>> &adj, int s)
 {
     vector<int> dist(adj.size(), maximum);
     vector<int> prev(adj.size(), -1);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> fila;
-    fila.push(make_pair(0, s));
-    dist[s] = 0;
-    while (!fila.empty())
-    {
-        int v = fila.top().second;
-        fila.pop();
-        for (unsigned i = 0; i < adj[v].size(); i++)
-        {
-            int u = adj[v][i].first;
-            int p = adj[v][i].second;
-            if (dist[u] > dist[v] + p)
-            {
-                dist[u] = dist[v] + p;
-                fila.push(make_pair(dist[u], u));
-            }
-        }
-    }
     return dist;
 }
 int main(int argc, char *argv[])
@@ -84,7 +67,7 @@ int main(int argc, char *argv[])
         adj[v2].push_back(make_pair(v1, p));
     }
     fp.close();
-    vector<int> dist = dijkstra(adj, s);
+    vector<int> dist = bellman(adj, s);
     if (!(outFile == ""))
     {
         ofstream fp(outFile);
