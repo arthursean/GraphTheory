@@ -4,9 +4,10 @@ using namespace std;
 
 vector<pair<int, int>> prim(vector<vector<pair<int, int>>> &adj, int &minimum, int s)
 {
-    vector<int> dist(adj.size(), maximum);
-    vector<int> prev(adj.size(), -1);
-    vector<bool> flag(adj.size(), false);
+    int size = adj.size();
+    vector<int> dist(size, maximum);
+    vector<int> prev(size, -1);
+    vector<bool> flag(size, false);
     vector<pair<int, int>> result;
     result = vector<pair<int, int>>();
 
@@ -30,9 +31,9 @@ vector<pair<int, int>> prim(vector<vector<pair<int, int>>> &adj, int &minimum, i
             }
         }
     }
-    for (unsigned i = 2; i < adj.size(); i++)
+    for (int i = 2; i < size; i++)
     {
-        result.push_back(make_pair(i, prev[i]));
+        result.push_back(make_pair(prev[i], i));
         minimum += dist[i];
     }
     return result;
@@ -108,9 +109,9 @@ int main(int argc, char *argv[])
         {
             if (printSolution)
             {
-                for (int i = 1; i < n; i++)
+                for (auto valor : resultado)
                 {
-                    fp << "(" << resultado[i].second << "," << resultado[i].first << ") ";
+                    fp << "(" << valor.first << "," << valor.second << ") ";
                 }
             }
             else
@@ -123,9 +124,9 @@ int main(int argc, char *argv[])
     }
     if (printSolution)
     {
-        for (int i = 1; i < n; i++)
+        for (auto valor : resultado)
         {
-            cout << "(" << resultado[i].second << "," << resultado[i].first << ")"
+            cout << "(" << valor.first << "," << valor.second << ")"
                  << " ";
         }
     }
