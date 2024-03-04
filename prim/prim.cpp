@@ -2,6 +2,41 @@
 #define maximum INT_MAX
 using namespace std;
 
+vector<pair<int, int>> prim(vector<vector<pair<int, int>>> &adj, int &minimum, int s)
+{
+    vector<int> dist(adj.size(), maximum);
+    vector<int> prev(adj.size(), -1);
+    vector<bool> flag(adj.size(), false);
+    vector<pair<int, int>> result;
+    result = vector<pair<int, int>>();
+
+    dist[s] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> fila;
+    fila.push(make_pair(dist[s], s));
+    while (!fila.empty())
+    {
+        int v = fila.top().second;
+        fila.pop();
+        flag[v] = true;
+        for (auto test : adj[v])
+        {
+            int u = test.first;
+            int p = test.second;
+            if (!flag[u] && dist[u] > p)
+            {
+                dist[u] = p;
+                prev[u] = v;
+                fila.push(make_pair(dist[u], u));
+            }
+        }
+    }
+    for (unsigned i = 2; i < adj.size(); i++)
+    {
+        result.push_back(make_pair(i, prev[i]));
+        minimum += dist[i];
+    }
+    return result;
+}
 int main(int argc, char *argv[])
 {
     string outFile = "";
@@ -60,5 +95,43 @@ int main(int argc, char *argv[])
         adj[v1].push_back(make_pair(v2, p));
         adj[v2].push_back(make_pair(v1, p));
     }
-    fp.close();
+    int minimum = 0;
+    vector<pair<int, int>> resultado = prim(adj, minimum, s);
+    if (!(outFile == ""))
+    {
+        ofstream fp(outFile);
+        if (!fp)
+        {
+            cout << "Não foi possível abrir o arquivo de saída: " << outFile << endl;
+        }
+        else
+        {
+            if (printSolution)
+            {
+                for (int i = 1; i < n; i++)
+                {
+                    fp << "(" << resultado[i].second << "," << resultado[i].first << ") ";
+                }
+            }
+            else
+            {
+                fp << minimum;
+            }
+            fp << endl;
+            fp.close();
+        }
+    }
+    if (printSolution)
+    {
+        for (int i = 1; i < n; i++)
+        {
+            cout << "(" << resultado[i].second << "," << resultado[i].first << ")"
+                 << " ";
+        }
+    }
+    else
+    {
+        cout << minimum;
+    }
+    cout << endl;
 }
