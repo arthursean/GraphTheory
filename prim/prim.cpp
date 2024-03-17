@@ -96,6 +96,7 @@ int main(int argc, char *argv[])
         adj[v1].push_back(make_pair(v2, p));
         adj[v2].push_back(make_pair(v1, p));
     }
+    fp.close();
     int minimum = 0;
     vector<pair<int, int>> resultado = prim(adj, minimum, s);
     if (!(outFile == ""))
