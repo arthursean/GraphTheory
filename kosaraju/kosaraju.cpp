@@ -46,7 +46,7 @@ vector<vector<int>> kosaraju(vector<vector<int>> &adj, int n)
         }
     }
     fill(flag.begin(), flag.end(), false);
-    vector<vector<int>> components;
+    vector<vector<int>> stronglyConnectedComponents;
     while (!pilha.empty())
     {
         int v = pilha.top();
@@ -55,10 +55,10 @@ vector<vector<int>> kosaraju(vector<vector<int>> &adj, int n)
         {
             vector<int> component;
             dfs(reverseAdj, flag, component, v);
-            components.push_back(component);
+            stronglyConnectedComponents.push_back(component);
         }
     }
-    return components;
+    return stronglyConnectedComponents;
 }
 int main(int argc, char *argv[])
 {
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
         adj[v1 - 1].push_back(v2 - 1);
     }
     fp.close();
-    vector<vector<int>> components = kosaraju(adj, n);
+    vector<vector<int>> stronglyConnectedComponents = kosaraju(adj, n);
     if (!(outFile == ""))
     {
         ofstream fp(outFile);
@@ -119,21 +119,21 @@ int main(int argc, char *argv[])
         }
         else
         {
-            for (int i = 0; i < components.size(); i++)
+            for (int i = 0; i < stronglyConnectedComponents.size(); i++)
             {
-                for (int j = 0; j < components[i].size(); j++)
+                for (int j = 0; j < stronglyConnectedComponents[i].size(); j++)
                 {
-                    fp << components[i][j] + 1 << " ";
+                    fp << stronglyConnectedComponents[i][j] + 1 << " ";
                 }
                 fp << endl;
             }
         }
     }
-    for (int i = 0; i < components.size(); i++)
+    for (int i = 0; i < stronglyConnectedComponents.size(); i++)
     {
-        for (int j = 0; j < components[i].size(); j++)
+        for (int j = 0; j < stronglyConnectedComponents[i].size(); j++)
         {
-            cout << components[i][j] + 1 << " ";
+            cout << stronglyConnectedComponents[i][j] + 1 << " ";
         }
         cout << endl;
     }
