@@ -86,10 +86,6 @@ int main(int argc, char *argv[])
     fp >> n >> m;
     n++;
     vector<vector<pair<int, int>>> adj(n);
-    for (int i = 1; i < n; i++)
-    {
-        adj[i] = vector<pair<int, int>>();
-    }
     for (int i = 0; i < m; i++)
     {
         fp >> v1 >> v2 >> p;
