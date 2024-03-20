@@ -42,7 +42,7 @@ vector<vector<int>> kosaraju(vector<vector<int>> &adj, int n)
     {
         if (!flag[i])
         {
-            postOrderDfs(reverseAdj, flag, pilha, i);
+            postOrderDfs(adj, flag, pilha, i);
         }
     }
     fill(flag.begin(), flag.end(), false);
@@ -54,7 +54,7 @@ vector<vector<int>> kosaraju(vector<vector<int>> &adj, int n)
         if (!flag[v])
         {
             vector<int> component;
-            dfs(adj, flag, component, v);
+            dfs(reverseAdj, flag, component, v);
             stronglyConnectedComponents.push_back(component);
         }
     }
@@ -137,5 +137,4 @@ int main(int argc, char *argv[])
         }
         cout << endl;
     }
-    cout << endl;
 }
