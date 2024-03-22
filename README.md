@@ -23,9 +23,9 @@ Bellman-Ford: SPP
 - Entrada e saída:
 
   A entrada é a padrão dos algoritmos de caminho mínimo, recebendo a quantidade de vértices e arestas, e logo após as arestas com seus pesos, no formato u, v, w, sendo u o vértice fonte e v o de destino e w o peso.
-  O algoritmo foi implementado para **grafos direcionados**.
+  **O algoritmo foi implementado para grafos direcionados.**
 
-  A saída será a distância do vértice escolhido com o parâmetro -i, que por padrão é setado como 1, até todos os vértices do grafo. Para um grafo com ciclo negativo, o programa retorna "O grafo contém um ciclo negativo". Caso um vértice seja inalcansável a partir do escolhido, sua distância será setada como "".
+  A saída será a distância do vértice escolhido com o parâmetro -i, que por padrão é setado como 1, até todos os vértices do grafo. Para um grafo com ciclo negativo, o programa retorna "O grafo contém um ciclo negativo". Caso um vértice seja inalcansável a partir do escolhido, sua distância será setada como **INT_MAX**, que em c++ é `2147483647`.
 
   * Exemplos de saída:
 
