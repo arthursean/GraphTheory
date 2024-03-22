@@ -24,9 +24,6 @@ bool bellman_ford(vector<vector<int>>& G, int s, int n, vector<int> & dist) {
             }
         }
     }
-    for (int i = 1; i <= n; ++i) {
-        if (dist[i] == INT_MAX) dist[i] = -1;
-    }
     return true;
 }
 
