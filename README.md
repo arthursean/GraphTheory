@@ -1,4 +1,4 @@
-## GraphTheory
+# GraphTheory
 
 Alunos: Arthur Sean Cerqueira Campos e Diêgo de Araujo Correia
 
@@ -14,7 +14,7 @@ Kruskal: AGM
 
 Bellman-Ford: SPP
 
-# Especificações do algoritmo Bellman-Ford
+## Especificações do algoritmo Bellman-Ford
 
 - Testes:
 
